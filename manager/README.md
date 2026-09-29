@@ -21,6 +21,6 @@ Failures are typed: transport, size budget, unsafe archive, invalid signature, c
 
 Local-file, HTTPS and optional release-service adapters implement the same source contract. v0 downloads full packages. APK installation and APK differential updates are outside this API.
 
-The provisional Android entry is a single Kotlin/JS source file `app.js`. The runtime owner will document `kuikly-bridge/1`; manager code must not duplicate or infer its numeric method tables. A first native-view bridge call establishes handshake; completed first layout establishes readiness.
+The provisional Android entry is a single Kotlin/JS source file `app.js`. `kuikly-bridge/1` is specified in [bridge ABI v0](../docs/bridge-abi-v0.md); manager code must not duplicate or infer its numeric method tables. A first native-view bridge call establishes handshake; completed first layout establishes readiness.
 
 See [package contract](../docs/package-contract-v0.md) for validation and recovery requirements.

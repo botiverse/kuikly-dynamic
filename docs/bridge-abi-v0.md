@@ -61,10 +61,10 @@ Optional: the bundle may export `registerCallNative(pagerId, callback)`. Once an
 
 ## Lifecycle
 
-1. `Runtime.create(verifiedPackage, capabilityBroker)` creates a fresh JS context, injects `callNative` / `nativeLog`, and evaluates `entry`.
+1. `Runtime.create(packageLease, capabilityBroker, pendingStartToken)` (see [manager boundary](../manager/README.md)) creates a fresh JS context, injects `callNative` / `nativeLog`, and evaluates `entry`.
 2. The host calls `callKotlinMethod(1 /* createInstance */, pagerId, pageName, pageData, ...)`.
 3. Bridge handshake succeeds on the first `callNative(1 /* createRenderView */)`.
-4. `ready()` fires after the first layout pass completes; any failure before that is reported with its stage (VM creation, bundle evaluation, handshake, first frame).
+4. `ready()` fires after the first layout pass completes, which is what lets the manager mark the package healthy; any failure before that is reported with its stage (VM creation, bundle evaluation, handshake, first frame).
 5. `dispose()` calls `callKotlinMethod(3 /* destroyInstance */, pagerId)` and tears the context down; a disposed context is never reused.
 
 Open points to settle in the prototype: argument marshalling for each engine (strings, numbers, JSON objects, callbacks), where `setTimeout` is scheduled, and how module calls are authorised by the capability broker.
